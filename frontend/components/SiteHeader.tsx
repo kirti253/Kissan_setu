@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LuLeaf } from "react-icons/lu";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -10,7 +11,7 @@ export function SiteHeader() {
   return (
     <header className={`site-header ${isHomePage ? "site-header-home" : ""}`}>
       <Link href="/" className="brand-mark">
-        <span className="brand-dot" />
+        <LuLeaf className="brand-logo-icon" />
         <div>
           <strong>Kissan Setu</strong>
           <span>Direct crop trading </span>

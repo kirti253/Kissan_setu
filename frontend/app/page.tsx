@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LuLeaf } from "react-icons/lu";
 
 function NoMiddlemenIcon() {
   return (
@@ -290,7 +291,7 @@ export default function LandingPage() {
         <div className="site-footer-inner">
           <div className="footer-brand">
             <div className="brand-mark">
-              <span className="brand-dot" />
+              <LuLeaf className="brand-logo-icon" />
               <div>
                 <strong>Kissan Setu</strong>
                 <span>Direct crop trading</span>
