@@ -8,5 +8,9 @@
     "dev": "npm run dev --workspace frontend",
     "build": "npm run build --workspace frontend",
     "start": "npm run start --workspace frontend"
+  },
+  "overrides": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
