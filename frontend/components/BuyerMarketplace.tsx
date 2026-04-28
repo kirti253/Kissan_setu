@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { startTransition, useDeferredValue, useEffect, useState } from "react";
-import { FiLoader, FiMapPin, FiPackage, FiPhone, FiSearch } from "react-icons/fi";
+import { FiLoader, FiLogOut, FiMapPin, FiPackage, FiPhone, FiSearch } from "react-icons/fi";
 import { formatCurrency, getListings, getPriceInsight } from "@/lib/api";
-import { getStoredUser } from "@/lib/storage";
+import { clearStoredUser, getStoredUser } from "@/lib/storage";
 import { CropListing, PriceInsight, UserProfile } from "@/lib/types";
 import { PriceComparisonModal } from "@/components/PriceComparisonModal";
 
@@ -18,6 +19,7 @@ function buildWhatsAppLink(listing: CropListing) {
 }
 
 export function BuyerMarketplace() {
+  const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [search, setSearch] = useState("");
   const [location, setLocation] = useState("");
@@ -70,6 +72,12 @@ export function BuyerMarketplace() {
     setPriceLoading(false);
   }
 
+  function handleLogout() {
+    clearStoredUser();
+    setUser(null);
+    router.push("/");
+  }
+
   return (
     <div className="content-shell dashboard-shell">
       <section className="dashboard-intro">
@@ -81,15 +89,27 @@ export function BuyerMarketplace() {
             middle layer.
           </p>
         </div>
-        <div className="stat-row">
-          <div className="mini-card">
-            <strong>{listings.length}</strong>
-            <span>Listings visible</span>
+        <div className="dashboard-intro-side">
+          <div className="stat-row">
+            <div className="mini-card">
+              <strong>{listings.length}</strong>
+              <span>Listings visible</span>
+            </div>
+            <div className="mini-card">
+              <strong>{user?.name || "Guest buyer"}</strong>
+              <span>Current session</span>
+            </div>
           </div>
-          <div className="mini-card">
-            <strong>{user?.name || "Guest buyer"}</strong>
-            <span>Current session</span>
-          </div>
+          {user ? (
+            <button
+              type="button"
+              className="button button-secondary dashboard-logout"
+              onClick={handleLogout}
+            >
+              <FiLogOut aria-hidden="true" />
+              Logout
+            </button>
+          ) : null}
         </div>
       </section>
 

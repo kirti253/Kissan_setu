@@ -8,6 +8,7 @@ import { LuLeaf, LuMenu, LuX } from "react-icons/lu";
 export function SiteHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const shouldHideOnPage = pathname === "/farmer" || pathname === "/marketplace";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -41,6 +42,10 @@ export function SiteHeader() {
   }, [isMenuOpen]);
 
   const handleMenuClose = () => setIsMenuOpen(false);
+
+  if (shouldHideOnPage) {
+    return null;
+  }
 
   return (
     <header

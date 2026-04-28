@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent, startTransition, useEffect, useState } from "react";
-import { FiMapPin, FiPhone, FiX, FiLoader } from "react-icons/fi";
+import { FiLogOut, FiMapPin, FiPhone, FiX } from "react-icons/fi";
 import { GiWheat } from "react-icons/gi";
 import { createListing, deleteListing, formatCurrency, getListings } from "@/lib/api";
-import { getStoredUser } from "@/lib/storage";
+import { clearStoredUser, getStoredUser } from "@/lib/storage";
 import { CropListing, ListingFormValues, UserProfile } from "@/lib/types";
 
 const emptyForm: ListingFormValues = {
@@ -18,6 +19,7 @@ const emptyForm: ListingFormValues = {
 };
 
 export function FarmerDashboard() {
+  const router = useRouter();
   const [user, setUser] = useState<UserProfile | null>(null);
   const [form, setForm] = useState<ListingFormValues>(emptyForm);
   const [listings, setListings] = useState<CropListing[]>([]);
@@ -105,6 +107,12 @@ export function FarmerDashboard() {
     setListings((currentListings) => currentListings.filter((listing) => listing.id !== id));
   }
 
+  function handleLogout() {
+    clearStoredUser();
+    setUser(null);
+    router.push("/");
+  }
+
   if (!user || user.role !== "farmer") {
     return (
       <div className="content-shell">
@@ -128,15 +136,25 @@ export function FarmerDashboard() {
           <h1>Welcome back, {user.name}</h1>
           <p>Add fresh crop listings and let buyers contact you directly.</p>
         </div>
-        <div className="stat-row">
-          <div className="mini-card">
-            <strong>{listings.length}</strong>
-            <span>My active listings</span>
+        <div className="dashboard-intro-side">
+          <div className="stat-row">
+            <div className="mini-card">
+              <strong>{listings.length}</strong>
+              <span>My active listings</span>
+            </div>
+            <div className="mini-card">
+              <strong>{user.phone}</strong>
+              <span>Contact number</span>
+            </div>
           </div>
-          <div className="mini-card">
-            <strong>{user.phone}</strong>
-            <span>Contact number</span>
-          </div>
+          <button
+            type="button"
+            className="button button-secondary dashboard-logout"
+            onClick={handleLogout}
+          >
+            <FiLogOut aria-hidden="true" />
+            Logout
+          </button>
         </div>
       </section>
 

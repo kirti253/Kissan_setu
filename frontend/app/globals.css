@@ -1113,6 +1113,20 @@ select {
   margin-bottom: 1.25rem;
 }
 
+.dashboard-intro-side {
+  display: grid;
+  justify-items: end;
+  gap: 1rem;
+}
+
+.dashboard-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-width: 9rem;
+}
+
 .dashboard-grid {
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
   align-items: start;
@@ -2237,6 +2251,7 @@ select {
   }
 
   .dashboard-intro,
+  .dashboard-intro-side,
   .listing-topline,
   .listing-footer,
   .listing-meta,
@@ -2253,6 +2268,15 @@ select {
 
   .site-header-home {
     position: absolute;
+  }
+
+  .dashboard-intro-side {
+    width: 100%;
+    justify-items: stretch;
+  }
+
+  .dashboard-logout {
+    width: 100%;
   }
 
   .site-header-home.site-header-menu-open {
