@@ -267,7 +267,7 @@ export default function LandingPage() {
             <article className="proof-card proof-card-accent">
               <div className="stat-stack">
                 <div className="stat">
-                  <strong>2–3×</strong>
+                  <strong>2X</strong>
                   <span className="muted-copy">faster buyer outreach</span>
                 </div>
                 <div className="stat">
