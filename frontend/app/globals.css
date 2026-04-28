@@ -875,7 +875,24 @@ select {
 .quote-meta {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 1rem;
+}
+
+.quote-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.quote-meta strong {
+  font-size: 1.02rem;
+  color: var(--text);
+  display: block;
+}
+
+.quote-meta .muted-copy {
+  font-size: 0.93rem;
+  display: block;
 }
 
 .avatar {
@@ -887,6 +904,7 @@ select {
   font-weight: 800;
   color: rgba(15, 23, 42, 0.86);
   background: rgba(15, 23, 42, 0.06);
+  flex-shrink: 0;
 }
 
 .stat-stack {
