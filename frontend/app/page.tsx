@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LuLeaf } from "react-icons/lu";
+import { FiGithub } from "react-icons/fi";
 
 function NoMiddlemenIcon() {
   return (
@@ -330,9 +331,7 @@ export default function LandingPage() {
                 LinkedIn
               </a>
               <a className="social-link" href="#" aria-label="GitHub">
-                <span className="social-icon" aria-hidden="true">
-                  ⌂
-                </span>
+                <FiGithub className="social-icon" aria-hidden="true" />
                 GitHub
               </a>
             </div>
